@@ -3,6 +3,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable, tap, catchError, throwError } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 export interface LoginRequest {
   username: string;
@@ -20,8 +21,7 @@ export class AuthService {
   private http = inject(HttpClient);
   private router = inject(Router);
   private platformId = inject(PLATFORM_ID);
-
-  private readonly API_URL = 'http://localhost:8081/api';
+  private readonly API_URL = environment.apiUrl;
   private readonly TOKEN_KEY = 'admin_token';
   private readonly USER_KEY = 'admin_user';
 
