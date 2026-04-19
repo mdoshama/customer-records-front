@@ -7,7 +7,9 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:customer-records": "node dist/customer-records/server/server.mjs"
+    "serve:ssr:customer-records": "node dist/customer-records/server/server.mjs",
+    "dev:ssr": "ng build --configuration development && node dist/customer-records/server/server.mjs",
+    "dev:watch": "ng build --watch --configuration development"
   },
   "private": true,
   "packageManager": "npm@11.11.0",
@@ -20,6 +22,7 @@
     "@angular/platform-server": "^21.2.0",
     "@angular/router": "^21.2.0",
     "@angular/ssr": "^21.2.6",
+    "bootstrap": "^5.3.8",
     "express": "^5.1.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0"

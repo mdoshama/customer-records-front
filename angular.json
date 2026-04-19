@@ -29,9 +29,7 @@
                 "input": "public"
               }
             ],
-            "styles": [
-              "src/styles.scss"
-            ],
+            "styles": ["node_modules/bootstrap/dist/css/bootstrap.css", "src/styles.scss"],
             "server": "src/main.server.ts",
             "outputMode": "server",
             "security": {
@@ -67,12 +65,15 @@
         },
         "serve": {
           "builder": "@angular/build:dev-server",
+          "options": {
+            "buildTarget": "customer-records:build"
+          },
           "configurations": {
-            "production": {
-              "buildTarget": "customer-records:build:production"
-            },
             "development": {
               "buildTarget": "customer-records:build:development"
+            },
+            "production": {
+              "buildTarget": "customer-records:build:production"
             }
           },
           "defaultConfiguration": "development"
