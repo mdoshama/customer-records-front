@@ -25,18 +25,13 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               {
-                "glob": "_redirects",
+                "glob": "**/*",
                 "input": "public"
               }
             ],
             "styles": ["node_modules/bootstrap/dist/css/bootstrap.css", "src/styles.scss"],
-            "server": "src/main.server.ts",
-            "outputMode": "server",
             "security": {
               "allowedHosts": []
-            },
-            "ssr": {
-              "entry": "src/server.ts"
             }
           },
           "configurations": {
