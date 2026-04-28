@@ -1,0 +1,118 @@
+<div class="create-user-container">
+
+  <!-- Users List -->
+  <div class="users-card">
+
+    <div class="users-header">
+      <h2>All Users</h2>
+      <span class="user-count">{{ users.length }} users</span>
+    </div>
+
+    @if (loading) {
+      <div class="loading">Loading users...</div>
+    }
+
+    @if (!loading && users.length === 0) {
+      <div class="empty">No users found.</div>
+    }
+
+    @if (!loading && users.length > 0) {
+      <table class="users-table">
+        <thead>
+        <tr>
+          <th>Name</th>
+          <th>Username</th>
+          <th>Role</th>
+          <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+          @for (user of users; track user.id) {
+            <tr>
+              <td>{{ user.name }}</td>
+              <td>{{ user.username }}</td>
+              <td>
+                <span class="badge" [class.admin]="user.role === 'Admin'">
+                  {{ user.role }}
+                </span>
+              </td>
+              <td class="actions-cell">
+                <button class="edit-btn" (click)="editUser(user)">Edit</button>
+                <button class="delete-btn" (click)="deleteUser(user.id)">Delete</button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    }
+
+  </div>
+
+  <div class="form-card">
+
+    <div class="form-header">
+      <h2>{{ editMode ? 'Edit User' : 'Create New User' }}</h2>
+      <p>{{ editMode ? 'Update the details below' : 'Fill in the details below to register a new user' }}</p>
+    </div>
+
+    <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)">
+
+      <div class="form-group">
+        <label for="name">Full Name</label>
+        <input
+          id="name"
+          type="text"
+          [(ngModel)]="form.name"
+          name="name"
+          placeholder="e.g. John Doe"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input
+          id="username"
+          type="text"
+          [(ngModel)]="form.username"
+          name="username"
+          placeholder="e.g. johndoe"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          id="password"
+          type="password"
+          [(ngModel)]="form.password"
+          name="password"
+          placeholder="Leave blank to keep current password"
+          [required]="!editMode"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="role">Role</label>
+        <select id="role" [(ngModel)]="form.role" name="role" required>
+          <option value="" disabled selected>Select a role</option>
+          <option value="Admin">Admin</option>
+          <option value="User">User</option>
+        </select>
+      </div>
+
+      <div class="form-actions">
+        <button type="button" class="cancel-btn" (click)="cancelForm(userForm)">Cancel</button>
+        <button type="submit" class="submit-btn" [disabled]="userForm.invalid">
+          {{ editMode ? 'Update User' : 'Create User' }}
+        </button>
+      </div>
+
+    </form>
+
+  </div>
+
+
+
+</div>

@@ -1,0 +1,287 @@
+// ─── Layout ───────────────────────────────────────────────
+.create-user-container {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 40px 20px;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+// ─── Shared Card ──────────────────────────────────────────
+.form-card,
+.users-card {
+  background: white;
+  border-radius: 12px;
+  padding: 32px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.07);
+  border: 1px solid #f1f5f9;
+}
+
+// ─── Form Header ──────────────────────────────────────────
+.form-header {
+  margin-bottom: 28px;
+
+  h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 6px;
+  }
+
+  p {
+    font-size: 13px;
+    color: #64748b;
+    margin: 0;
+  }
+}
+
+// ─── Form Fields ──────────────────────────────────────────
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+
+  label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #334155;
+    margin-bottom: 6px;
+  }
+
+  input,
+  select {
+    padding: 10px 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #0f172a;
+    background: #f8fafc;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+
+    &:focus {
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.12);
+      background: white;
+    }
+  }
+
+  select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2364748b' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 36px;
+  }
+}
+
+// ─── Form Actions ─────────────────────────────────────────
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.cancel-btn {
+  padding: 10px 20px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: white;
+  color: #475569;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.2s;
+
+  &:hover {
+    background: #f1f5f9;
+    border-color: #94a3b8;
+  }
+}
+
+.submit-btn {
+  padding: 10px 24px;
+  border: none;
+  border-radius: 8px;
+  background: #3b82f6;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+
+  &:hover {
+    background: #2563eb;
+  }
+
+  &:disabled {
+    background: #93c5fd;
+    cursor: not-allowed;
+  }
+}
+
+// ─── Users Card Header ────────────────────────────────────
+.users-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+
+  h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0;
+  }
+}
+
+.user-count {
+  font-size: 12px;
+  background: #f1f5f9;
+  color: #64748b;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+// ─── States ───────────────────────────────────────────────
+.loading,
+.empty {
+  text-align: center;
+  color: #94a3b8;
+  padding: 24px 0;
+  font-size: 14px;
+}
+
+// ─── Table ────────────────────────────────────────────────
+.users-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+
+  th {
+    text-align: left;
+    padding: 10px 12px;
+    color: #64748b;
+    font-weight: 600;
+    border-bottom: 2px solid #e2e8f0;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  td {
+    padding: 13px 12px;
+    color: #0f172a;
+    border-bottom: 1px solid #f1f5f9;
+  }
+
+  tr:last-child td {
+    border-bottom: none;
+  }
+
+  tr:hover td {
+    background: #f8fafc;
+    transition: background 0.15s;
+  }
+}
+
+// ─── Role Badge ───────────────────────────────────────────
+.badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  background: #e0f2fe;
+  color: #0369a1;
+
+  &.admin {
+    background: #ede9fe;
+    color: #6d28d9;
+  }
+}
+
+// ─── Action Buttons ───────────────────────────────────────
+.actions-cell {
+  display: flex;
+  gap: 8px;
+}
+
+.edit-btn,
+.delete-btn {
+  padding: 5px 14px;
+  border: none;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.edit-btn {
+  background: #dbeafe;
+  color: #1d4ed8;
+
+  &:hover {
+    background: #bfdbfe;
+  }
+}
+
+.delete-btn {
+  background: #fee2e2;
+  color: #dc2626;
+
+  &:hover {
+    background: #fecaca;
+  }
+}
+
+// ── Actions cell ──────────────────────────────────────
+.actions-cell {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+// ── Mobile ────────────────────────────────────────────
+@media (max-width: 768px) {
+
+  // Make table scrollable horizontally instead of breaking layout
+  .users-card {
+    overflow-x: auto;
+  }
+
+  .users-table {
+    min-width: 500px; // prevents columns from squishing
+  }
+
+  // Stack the form card fields
+  .form-card {
+    padding: 1rem;
+  }
+
+  // Stack form actions vertically
+  .form-actions {
+    flex-direction: column;
+
+    .cancel-btn,
+    .submit-btn {
+      width: 100%;
+    }
+  }
+
+  // Shrink action buttons
+  .edit-btn,
+  .delete-btn {
+    padding: 0.35rem 0.6rem;
+    font-size: 0.8rem;
+  }
+}
+.form-actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
