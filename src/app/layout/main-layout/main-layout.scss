@@ -1,28 +1,115 @@
+$sidebar-width: 220px;
+
+.app-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+// ── Sidebar ──────────────────────────────────────────
 .sidebar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 240px;
-  height: 100vh;
-  background: #1e293b;
-  color: white;
-  padding: 20px;
+  width: $sidebar-width;
+  background: #1a1a2e;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+
+  .sidebar-header {
+    padding: 1.5rem 1.25rem 1rem;
+    font-weight: 700;
+    font-size: 1.1rem;
+    letter-spacing: 0.03em;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  nav {
+    display: flex;
+    flex-direction: column;
+    padding: 0.75rem 0;
+
+    a {
+      padding: 0.75rem 1.25rem;
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: background 0.2s, color 0.2s;
+
+      &:hover { background: rgba(255,255,255,0.07); color: #fff; }
+      &.active { background: rgba(255,255,255,0.12); color: #fff; font-weight: 600; }
+    }
+  }
 }
 
+// ── Main content ──────────────────────────────────────
 .content {
-  margin-left: 240px;
-  padding: 20px;
+  flex: 1;
+  padding: 2rem;
+  background: #f5f5f5;
+  overflow-y: auto;
 }
 
-.sidebar a {
-  display: block;
-  color: white;
-  margin: 10px 0;
-  text-decoration: none;
+// ── Mobile controls (hidden on desktop) ───────────────
+.menu-toggle,
+.overlay {
+  display: none;
 }
 
-.active {
-  background: #475569;
-  padding: 5px;
-  border-radius: 4px;
+// ── Responsive breakpoint ─────────────────────────────
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    inset: 0 auto 0 0;
+    width: $sidebar-width;
+    z-index: 200;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+
+    &.open { transform: translateX(0); }
+  }
+
+  .overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    z-index: 199;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+
+    &.visible { opacity: 1; pointer-events: all; }
+  }
+
+  .menu-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: 300;
+    width: 2rem;
+    height: 1.4rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+
+    span {
+      display: block;
+      height: 2px;
+      background: #1a1a2e;
+      border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+
+    &.open span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+    &.open span:nth-child(2) { opacity: 0; }
+    &.open span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+  }
+
+  .content {
+    padding: 1.25rem;
+    padding-top: 3.5rem; // clear the hamburger button
+  }
 }

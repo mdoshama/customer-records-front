@@ -14,9 +14,21 @@
   <div class="dashboard-content">
     <h1>Dashboard</h1>
 
-    <button class="create-btn" >
-      + Create Customer
-    </button>
+    <div class="button-group">
+
+      <!-- Visible to all authenticated users -->
+      <button class="create-btn">
+        + Create Customer
+      </button>
+
+      <!-- Visible to ADMIN only -->
+      @if (role === 'Admin') {
+        <button class="create-btn admin-btn" (click)="createUser()">
+          + Create User
+        </button>
+      }
+
+    </div>
   </div>
 
 </div>

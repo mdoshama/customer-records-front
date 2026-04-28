@@ -50,14 +50,21 @@
                   placeholder="Enter your password"
                   autocomplete="current-password"
                 />
-                <button type="button" class="btn btn-outline-secondary" (click)="togglePassword()">
+                <button type="button" class="btn btn-outline-secondary" (click)="togglePassword()" style="z-index: 4;">
                   <i [class]="showPassword ? 'bi bi-eye-slash' : 'bi bi-eye'"></i>
                 </button>
-                <div class="invalid-feedback">
-                  <span [hidden]="!password.hasError('required')">Password is required.</span>
-                  <span [hidden]="!password.hasError('minlength')">Minimum 6 characters required.</span>
-                </div>
               </div>
+
+              @if (password.invalid && password.touched) {
+                <div class="invalid-feedback d-block">
+                  @if (password.hasError('required')) {
+                    <span>Password is required.</span>
+                  }
+                  @if (password.hasError('minlength')) {
+                    <span>Minimum 6 characters required.</span>
+                  }
+                </div>
+              }
             </div>
 
             <div class="mb-4">

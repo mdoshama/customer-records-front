@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './auth/auth-guard';
+import { adminGuard } from './auth/admin-guard';
 import { MainLayout } from './layout/main-layout/main-layout';
 
 export const routes: Routes = [
@@ -21,6 +22,15 @@ export const routes: Routes = [
         path: 'dashboard',
         loadComponent: () => import('./dashboard/dashboard').then((m) => m.DashboardComponent),
       },
+
+      // Admin-only route
+      {
+        path: 'create-user',
+        canActivate: [adminGuard],
+        loadComponent: () =>
+          import('./user/user').then((m) => m.User),
+      },
+
       // // future routes
       // {
       //   path: 'customers',

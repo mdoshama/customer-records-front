@@ -1,9 +1,19 @@
 <div class="app-container">
-  <aside class="sidebar">
+  <button class="menu-toggle" (click)="sidebarOpen = !sidebarOpen" [class.open]="sidebarOpen">
+    <span></span><span></span><span></span>
+  </button>
+
+  <div class="overlay" [class.visible]="sidebarOpen" (click)="sidebarOpen = false"></div>
+
+  <aside class="sidebar" [class.open]="sidebarOpen">
+    <div class="sidebar-header">MDs Bespoke</div>
     <nav>
-      <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
-      <a routerLink="/customers">Customers</a>
-      <a routerLink="/orders">Orders</a>
+      <a routerLink="/dashboard" routerLinkActive="active" (click)="sidebarOpen = false">Dashboard</a>
+      <a routerLink="/customers" routerLinkActive="active" (click)="sidebarOpen = false">Customers</a>
+      <a routerLink="/orders" routerLinkActive="active" (click)="sidebarOpen = false">Orders</a>
+      @if (isAdmin) {
+        <a routerLink="/create-user" routerLinkActive="active" (click)="sidebarOpen = false">Users</a>
+      }
     </nav>
   </aside>
 

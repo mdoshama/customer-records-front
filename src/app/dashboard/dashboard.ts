@@ -1,30 +1,34 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { AuthService } from '../auth/AuthService';
-import { userInfo } from 'os';
+import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
+  imports: [CommonModule], // ← adds *ngIf, *ngFor, async pipe, etc.
   templateUrl: './dashboard.html',
   styleUrls: ['./dashboard.scss'],
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit {
   private auth = inject(AuthService);
+  private router = inject(Router);
 
-  user: any
-  username : string | null = null;
-  role : string | null = null;
+  user: any;
+  username: string | null = null;
+  role: string | null = null;
 
   logout(): void {
     this.auth.logout();
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.user = this.auth.getUser();
-    console.log(this.user);
-    this.username  = this.user.username;
-    this.role  = this.user.role;
-    console.log(this.role);
-    console.log(this.username);
+    this.username = this.user?.username;
+    this.role = this.user?.role;
+  }
+
+  createUser(): void {
+    this.router.navigate(['/create-user']);
   }
 }
