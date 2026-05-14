@@ -27,8 +27,13 @@ export const routes: Routes = [
       {
         path: 'create-user',
         canActivate: [adminGuard],
-        loadComponent: () =>
-          import('./user/user').then((m) => m.User),
+        loadComponent: () => import('./user/user').then((m) => m.User),
+      },
+      // Admin-only route
+      {
+        path: 'create-customer',
+        canActivate: [adminGuard],
+        loadComponent: () => import('./customer/customer/customer').then((m) => m.CustomerComponent),
       },
 
       // // future routes

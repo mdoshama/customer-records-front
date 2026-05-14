@@ -31,4 +31,8 @@ export class DashboardComponent implements OnInit {
   createUser(): void {
     this.router.navigate(['/create-user']);
   }
+
+  navigateToCreateCustomer() {
+    this.router.navigate(['/create-customer']);
+  }
 }

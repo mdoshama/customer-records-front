@@ -1,0 +1,328 @@
+// ── Tokens ─────────────────────────────────────────────
+$ink:        #1a1a1a;
+$muted:      #6b6b6b;
+$border:     #e2e2e2;
+$surface:    #fafafa;
+$danger:     #c0392b;
+$success-bg: #f0fdf4;
+$success-fg: #166534;
+$error-bg:   #fef2f2;
+$error-fg:   #991b1b;
+
+// ── Shell ───────────────────────────────────────────────
+.customer-shell {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1rem;
+  font-family: 'Georgia', serif;
+  color: $ink;
+  box-sizing: border-box;
+
+  *, *::before, *::after { box-sizing: inherit; }
+
+  @media (min-width: 600px) {
+    padding: 2rem 1.5rem;
+  }
+}
+
+// ── Header ──────────────────────────────────────────────
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+  border-bottom: 2px solid $ink;
+  padding-bottom: 0.75rem;
+
+  .header-label {
+    font-family: 'Courier New', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    color: $muted;
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+
+    @media (min-width: 600px) { font-size: 2rem; }
+  }
+}
+
+// ── Alerts ──────────────────────────────────────────────
+.alert {
+  padding: 0.65rem 0.9rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+
+  &-success { background: $success-bg; color: $success-fg; border: 1px solid darken($success-bg, 8%); }
+  &-error   { background: $error-bg;   color: $error-fg;   border: 1px solid darken($error-bg, 8%); }
+}
+
+// ── Search ──────────────────────────────────────────────
+.search-bar {
+  display: flex;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+
+  input {
+    flex: 1;
+    min-width: 0; // prevent overflow on small screens
+    padding: 0.6rem 0.75rem;
+    border: 1px solid $border;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s;
+    &:focus { border-color: $ink; }
+  }
+}
+
+.search-error { color: $danger; font-size: 0.85rem; margin-bottom: 0.75rem; }
+
+.search-result-card {
+  background: #fff;
+  border: 1px solid $ink;
+  border-radius: 6px;
+  padding: 0.9rem 1rem;
+  margin-bottom: 1.25rem;
+
+  .result-tag {
+    font-family: 'Courier New', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: $muted;
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+
+  .card-actions {
+    margin-top: 0.65rem;
+    display: flex;
+    gap: 0.5rem;
+  }
+}
+
+// ── Shared card text ────────────────────────────────────
+.card-name  { margin: 0 0 0.15rem; font-weight: 600; font-size: 0.95rem; }
+.card-phone { margin: 0; color: $muted; font-size: 0.85rem; }
+
+// ── Desktop Table ───────────────────────────────────────
+.table-wrap {
+  display: none; // hidden on mobile
+
+  @media (min-width: 600px) {
+    display: block;
+    overflow-x: auto;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+
+    thead tr { border-bottom: 2px solid $ink; }
+
+    th {
+      text-align: left;
+      padding: 0.6rem 0.75rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: $muted;
+      font-weight: normal;
+    }
+
+    td {
+      padding: 0.75rem;
+      border-bottom: 1px solid $border;
+      vertical-align: middle;
+    }
+
+    tbody tr {
+      transition: background 0.15s;
+      &:hover { background: $surface; }
+    }
+
+    .actions-cell { white-space: nowrap; text-align: right; }
+  }
+}
+
+// ── Mobile Cards ────────────────────────────────────────
+.mobile-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+
+  @media (min-width: 600px) { display: none; } // hidden on desktop
+}
+
+.mobile-card {
+  background: #fff;
+  border: 1px solid $border;
+  border-radius: 8px;
+  padding: 0.9rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+
+  .mobile-card-body { flex: 1; min-width: 0; }
+
+  .mobile-id {
+    font-family: 'Courier New', monospace;
+    font-size: 0.65rem;
+    color: $muted;
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+
+  .mobile-card-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    flex-shrink: 0;
+  }
+}
+
+// ── Empty State ─────────────────────────────────────────
+.empty-state {
+  text-align: center;
+  padding: 3rem 0;
+  color: $muted;
+  font-size: 0.9rem;
+  border: 1px dashed $border;
+  border-radius: 6px;
+}
+
+// ── Form Panel ──────────────────────────────────────────
+.form-panel {
+  border: 1px solid $border;
+  border-radius: 8px;
+  padding: 1.25rem;
+  background: #fff;
+
+  @media (min-width: 600px) { padding: 2rem; }
+
+  h2 {
+    margin: 0 0 1.25rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+
+    @media (min-width: 600px) { font-size: 1.25rem; }
+  }
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr; // single column on mobile
+  gap: 1rem;
+
+  @media (min-width: 480px) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .full-width { grid-column: 1 / -1; }
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+
+  label {
+    font-size: 0.72rem;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: $muted;
+  }
+
+  input {
+    padding: 0.65rem 0.9rem;
+    border: 1px solid $border;
+    border-radius: 4px;
+    font-size: 1rem; // 1rem prevents iOS zoom on focus
+    font-family: inherit;
+    outline: none;
+    transition: border-color 0.2s;
+    &:focus { border-color: $ink; }
+  }
+}
+
+.form-actions {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.6rem;
+}
+
+// ── Buttons ─────────────────────────────────────────────
+.btn-primary {
+  background: $ink;
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1.1rem;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity 0.2s;
+  &:hover { opacity: 0.8; }
+}
+
+.btn-outline {
+  background: transparent;
+  color: $ink;
+  border: 1px solid $ink;
+  padding: 0.6rem 0.9rem;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  cursor: pointer;
+  white-space: nowrap;
+  &:hover { background: $surface; }
+}
+
+.btn-ghost {
+  background: transparent;
+  color: $muted;
+  border: 1px solid $border;
+  padding: 0.6rem 0.75rem;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  cursor: pointer;
+  &:hover { border-color: $muted; }
+}
+
+.btn-outline-sm {
+  background: transparent;
+  color: $ink;
+  border: 1px solid $ink;
+  padding: 0.3rem 0.65rem;
+  border-radius: 3px;
+  font-size: 0.78rem;
+  cursor: pointer;
+  white-space: nowrap;
+  &:hover { background: $surface; }
+}
+
+.btn-danger-sm {
+  background: transparent;
+  color: $danger;
+  border: 1px solid $danger;
+  padding: 0.3rem 0.65rem;
+  border-radius: 3px;
+  font-size: 0.78rem;
+  cursor: pointer;
+  white-space: nowrap;
+  &:hover { background: $error-bg; }
+}
+
+.muted { color: $muted; }
